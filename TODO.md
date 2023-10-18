@@ -1,0 +1,2 @@
+-Added basic arithmetic functions
+-Add more complex functions like trig functions.
