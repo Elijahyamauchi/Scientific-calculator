@@ -9,6 +9,7 @@ namespace CalculatorApp
         private double currentValue = 0.0;
         private string currentOperator = string.Empty;
         private bool isOperatorClicked = false;
+        //testing
 
         public CalculatorForm()
         {
