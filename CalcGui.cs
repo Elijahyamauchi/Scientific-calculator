@@ -12,6 +12,8 @@ namespace CalculatorApp
         private bool isOperatorClicked = false;
 
         private TextBox resultTextBox;
+
+        //declaring the buttons
         private Button numberButton1;
         private Button numberButton2;
         private Button numberButton3;
@@ -23,6 +25,7 @@ namespace CalculatorApp
         private Button numberButton9;
         private Button numberButton0;
 
+        //declaring the operators
         private Button operatorButtonAdd;
         private Button operatorButtonSubtract;
         private Button operatorButtonMultiply;
@@ -34,14 +37,15 @@ namespace CalculatorApp
         {
             InitializeComponent();
         }
+        //affs the most recently clicked button to the screen
         //consider makeing 2 var called num1 and num 2. then if else where if num1 == void then input = num 1 else num 2 = input 
-
         private void NumberButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             resultTextBox.Text += button.Text;
         }
 
+        //event handeler for operators
         private void OperatorButton_Click(object sender, EventArgs e)
         {
             currentOperator = ((Button)sender).Text;
@@ -57,12 +61,16 @@ namespace CalculatorApp
                 currentOperator = string.Empty;
             }
         }
+
+        //event handeler for clear button
         private void ClearButton_Click(object sender, EventArgs e)
         {
             resultTextBox.Text = string.Empty;
             currentInput = string.Empty;
             currentOperator = string.Empty;
         }
+
+        //needs to be overhauled
         private void Calculate()
         {
             if (double.TryParse(currentInput, out double input) && double.TryParse(resultTextBox.Text, out double currentValue))
@@ -96,7 +104,7 @@ namespace CalculatorApp
         }
 
 
-
+        //creating the buttons, makes them visable, sets their size and position, text, and click function
         private void InitializeComponent()
         {
             this.numberButton1 = new System.Windows.Forms.Button();
@@ -215,7 +223,8 @@ namespace CalculatorApp
             this.clearButton.Location = new System.Drawing.Point(10, 230);
             this.clearButton.Text = "C";
 
-            resultTextBox = new TextBox();
+
+            //resultTextBox = new TextBox();
             this.resultTextBox = new System.Windows.Forms.TextBox();
             this.resultTextBox.Visible = true;
             this.resultTextBox.Size = new System.Drawing.Size(200, 30);  // Set the size (width and height) in pixels
