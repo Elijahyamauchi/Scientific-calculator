@@ -107,6 +107,14 @@ namespace CalculatorApp
         //creating the buttons, makes them visable, sets their size and position, text, and click function
         private void InitializeComponent()
         {
+            resultTextBox = new TextBox();
+            this.resultTextBox = new System.Windows.Forms.TextBox();
+            this.resultTextBox.Visible = true;
+            this.resultTextBox.Size = new System.Drawing.Size(200, 30);  // Set the size (width and height) in pixels
+            this.resultTextBox.Location = new System.Drawing.Point(10, 10);  // Set the location (X and Y coordinates) in pixels
+            this.resultTextBox.Text = "";  // Set the initial text
+            this.Controls.Add(resultTextBox);
+
             this.numberButton1 = new System.Windows.Forms.Button();
             this.numberButton1.Visible = true;
             this.numberButton1.Size = new System.Drawing.Size(50, 50);
@@ -136,6 +144,8 @@ namespace CalculatorApp
             this.operatorButtonSubtract.Size = new System.Drawing.Size(50, 50);
             this.operatorButtonSubtract.Location = new System.Drawing.Point(190, 50);
             this.operatorButtonSubtract.Text = "-";
+            this.Controls.Add(operatorButtonSubtract);
+            this.operatorButtonSubtract.Click += OperatorButton_Click;
 
             this.numberButton4 = new System.Windows.Forms.Button();
             this.numberButton4.Visible = true;
@@ -166,6 +176,8 @@ namespace CalculatorApp
             this.operatorButtonAdd.Size = new System.Drawing.Size(50, 50);
             this.operatorButtonAdd.Location = new System.Drawing.Point(190, 110);
             this.operatorButtonAdd.Text = "+";
+            this.Controls.Add(operatorButtonAdd);
+            this.operatorButtonAdd.Click += OperatorButton_Click;
 
             this.numberButton7 = new System.Windows.Forms.Button();
             this.numberButton7.Visible = true;
@@ -196,12 +208,16 @@ namespace CalculatorApp
             this.operatorButtonMultiply.Size = new System.Drawing.Size(50, 50);
             this.operatorButtonMultiply.Location = new System.Drawing.Point(190, 170);
             this.operatorButtonMultiply.Text = "*";
+            this.Controls.Add(operatorButtonMultiply);
+            this.operatorButtonMultiply.Click += OperatorButton_Click;
 
             this.operatorButtonDivide = new System.Windows.Forms.Button();
             this.operatorButtonDivide.Visible = true;
             this.operatorButtonDivide.Size = new System.Drawing.Size(50, 50);
             this.operatorButtonDivide.Location = new System.Drawing.Point(190, 230);
             this.operatorButtonDivide.Text = "/";
+            this.Controls.Add(operatorButtonDivide);
+            this.operatorButtonDivide.Click += OperatorButton_Click;
 
             this.numberButton0 = new System.Windows.Forms.Button();
             this.numberButton0.Visible = true;
@@ -216,29 +232,18 @@ namespace CalculatorApp
             this.equalsButton.Size = new System.Drawing.Size(50, 50);
             this.equalsButton.Location = new System.Drawing.Point(130, 230);
             this.equalsButton.Text = "=";
+            this.Controls.Add(equalsButton);
+            this.equalsButton += EqualsButton_Click;
 
             this.clearButton = new System.Windows.Forms.Button();
             this.clearButton.Visible = true;
             this.clearButton.Size = new System.Drawing.Size(50, 50);
             this.clearButton.Location = new System.Drawing.Point(10, 230);
             this.clearButton.Text = "C";
-
-
-            //resultTextBox = new TextBox();
-            this.resultTextBox = new System.Windows.Forms.TextBox();
-            this.resultTextBox.Visible = true;
-            this.resultTextBox.Size = new System.Drawing.Size(200, 30);  // Set the size (width and height) in pixels
-            this.resultTextBox.Location = new System.Drawing.Point(10, 10);  // Set the location (X and Y coordinates) in pixels
-            this.resultTextBox.Text = "";  // Set the initial text
-            this.Controls.Add(resultTextBox);
-
-            //needs to add the click function
-            this.Controls.Add(operatorButtonAdd);
-            this.Controls.Add(operatorButtonSubtract);
-            this.Controls.Add(operatorButtonDivide);
-            this.Controls.Add(operatorButtonMultiply);
             this.Controls.Add(clearButton);
-            this.Controls.Add(equalsButton);
+            this.clearButton.Click += ClearButton_Click;
+
+            //Title
             this.Text = "Calculator";
         }
 
