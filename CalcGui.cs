@@ -5,49 +5,64 @@ namespace CalculatorApp
 {
     public partial class CalculatorForm : Form
     {
+        // Fields to keep track of user input and calculations
         private string currentInput = string.Empty;
         private double currentValue = 0.0;
         private string currentOperator = string.Empty;
         private bool isOperatorClicked = false;
-        //testing
+
+        private TextBox resultTextBox;
+        private Button numberButton1;
+        private Button numberButton2;
+        private Button numberButton3;
+        private Button numberButton4;
+        private Button numberButton5;
+        private Button numberButton6;
+        private Button numberButton7;
+        private Button numberButton8;
+        private Button numberButton9;
+        private Button numberButton0;
+
+        private Button operatorButtonAdd;
+        private Button operatorButtonSubtract;
+        private Button operatorButtonMultiply;
+        private Button operatorButtonDivide;
+        private Button equalsButton;
+        private Button clearButton;
 
         public CalculatorForm()
         {
             InitializeComponent();
-            resultTextBox = new TextBox(); // Initialize 'resultTextBox' or set it to an existing non-null TextBox.
         }
+        //consider makeing 2 var called num1 and num 2. then if else where if num1 == void then input = num 1 else num 2 = input 
 
         private void NumberButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (isOperatorClicked)
-            {
-                resultTextBox.Text = button.Text;
-                isOperatorClicked = false;
-            }
-            else
-            {
-                resultTextBox.Text += button.Text;
-            }
+            resultTextBox.Text += button.Text;
         }
 
         private void OperatorButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(currentOperator))
-            {
-                Calculate();
-            }
             currentOperator = ((Button)sender).Text;
-            isOperatorClicked = true;
-            currentInput = resultTextBox.Text;
+            resultTextBox.Text += ((Button)sender).Text;
         }
 
+        // Event handler for the equals button click
         private void EqualsButton_Click(object sender, EventArgs e)
         {
-            Calculate();
+            if (!string.IsNullOrEmpty(resultTextBox.Text))
+            {
+                Calculate();
+                currentOperator = string.Empty;
+            }
+        }
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            resultTextBox.Text = string.Empty;
+            currentInput = string.Empty;
             currentOperator = string.Empty;
         }
-
         private void Calculate()
         {
             if (double.TryParse(currentInput, out double input) && double.TryParse(resultTextBox.Text, out double currentValue))
@@ -80,31 +95,7 @@ namespace CalculatorApp
             }
         }
 
-        private void ClearButton_Click(object sender, EventArgs e)
-        {
-            resultTextBox.Text = string.Empty;
-            currentInput = string.Empty;
-            currentOperator = string.Empty;
-        }
 
-        private TextBox resultTextBox;
-        private Button numberButton1;
-        private Button numberButton2;
-        private Button numberButton3;
-        private Button numberButton4;
-        private Button numberButton5;
-        private Button numberButton6;
-        private Button numberButton7;
-        private Button numberButton8;
-        private Button numberButton9;
-        private Button numberButton0;
-
-        private Button operatorButtonAdd;
-        private Button operatorButtonSubtract;
-        private Button operatorButtonMultiply;
-        private Button operatorButtonDivide;
-        private Button equalsButton;
-        private Button clearButton;
 
         private void InitializeComponent()
         {
@@ -206,26 +197,48 @@ namespace CalculatorApp
             this.clearButton.Location = new System.Drawing.Point(10, 230);
             this.clearButton.Text = "C";
 
+            resultTextBox = new TextBox();
             this.resultTextBox = new System.Windows.Forms.TextBox();
             this.resultTextBox.Visible = true;
             this.resultTextBox.Size = new System.Drawing.Size(200, 30);  // Set the size (width and height) in pixels
             this.resultTextBox.Location = new System.Drawing.Point(10, 10);  // Set the location (X and Y coordinates) in pixels
             this.resultTextBox.Text = "";  // Set the initial text
+            this.Controls.Add(resultTextBox);
 
 
 
             // Add controls to the form.
-            this.Controls.Add(resultTextBox);
+
             this.Controls.Add(numberButton1);
+            this.numberButton1.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton2);
+            this.numberButton2.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton3);
+            this.numberButton3.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton4);
+            this.numberButton4.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton5);
+            this.numberButton5.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton6);
+            this.numberButton6.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton7);
+            this.numberButton7.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton8);
+            this.numberButton8.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton9);
+            this.numberButton9.Click += NumberButton_Click;
+
             this.Controls.Add(numberButton0);
+            this.numberButton0.Click += NumberButton_Click;
+
             this.Controls.Add(operatorButtonAdd);
             this.Controls.Add(operatorButtonSubtract);
             this.Controls.Add(operatorButtonDivide);
