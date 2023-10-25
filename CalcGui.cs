@@ -37,7 +37,7 @@ namespace CalculatorApp
         {
             InitializeComponent();
         }
-        //affs the most recently clicked button to the screen
+        //adds the most recently clicked button to the screen
         //consider makeing 2 var called num1 and num 2. then if else where if num1 == void then input = num 1 else num 2 = input 
         private void NumberButton_Click(object sender, EventArgs e)
         {
