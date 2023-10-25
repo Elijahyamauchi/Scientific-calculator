@@ -99,26 +99,30 @@ namespace CalculatorApp
 
         private void InitializeComponent()
         {
-
-
             this.numberButton1 = new System.Windows.Forms.Button();
             this.numberButton1.Visible = true;
             this.numberButton1.Size = new System.Drawing.Size(50, 50);
             this.numberButton1.Location = new System.Drawing.Point(10, 50);
             this.numberButton1.Text = "1";
+            this.Controls.Add(numberButton1);
+            this.numberButton1.Click += NumberButton_Click;
 
             this.numberButton2 = new System.Windows.Forms.Button();
             this.numberButton2.Visible = true;
             this.numberButton2.Size = new System.Drawing.Size(50, 50);
             this.numberButton2.Location = new System.Drawing.Point(70, 50);
             this.numberButton2.Text = "2";
+            this.Controls.Add(numberButton2);
+            this.numberButton2.Click += NumberButton_Click;
 
             this.numberButton3 = new System.Windows.Forms.Button();
             this.numberButton3.Visible = true;
             this.numberButton3.Size = new System.Drawing.Size(50, 50);
             this.numberButton3.Location = new System.Drawing.Point(130, 50);
             this.numberButton3.Text = "3";
-            
+            this.Controls.Add(numberButton3);
+            this.numberButton3.Click += NumberButton_Click;
+                        
             this.operatorButtonSubtract = new System.Windows.Forms.Button();
             this.operatorButtonSubtract.Visible = true;
             this.operatorButtonSubtract.Size = new System.Drawing.Size(50, 50);
@@ -130,19 +134,25 @@ namespace CalculatorApp
             this.numberButton4.Size = new System.Drawing.Size(50, 50);
             this.numberButton4.Location = new System.Drawing.Point(10, 110);
             this.numberButton4.Text = "4";
-
+            this.Controls.Add(numberButton4);
+            this.numberButton4.Click += NumberButton_Click;
+                       
             this.numberButton5 = new System.Windows.Forms.Button();
             this.numberButton5.Visible = true;
             this.numberButton5.Size = new System.Drawing.Size(50, 50);
             this.numberButton5.Location = new System.Drawing.Point(70, 110);
             this.numberButton5.Text = "5";
-
+            this.Controls.Add(numberButton5);
+            this.numberButton5.Click += NumberButton_Click;
+                        
             this.numberButton6 = new System.Windows.Forms.Button();
             this.numberButton6.Visible = true;
             this.numberButton6.Size = new System.Drawing.Size(50, 50);
             this.numberButton6.Location = new System.Drawing.Point(130, 110);
             this.numberButton6.Text = "6";
-
+            this.Controls.Add(numberButton6);
+            this.numberButton6.Click += NumberButton_Click;
+                        
             this.operatorButtonAdd=new System.Windows.Forms.Button();
             this.operatorButtonAdd.Visible = true;
             this.operatorButtonAdd.Size = new System.Drawing.Size(50, 50);
@@ -154,18 +164,24 @@ namespace CalculatorApp
             this.numberButton7.Size = new System.Drawing.Size(50, 50);
             this.numberButton7.Location = new System.Drawing.Point(10, 170);
             this.numberButton7.Text = "7";
-
+            this.Controls.Add(numberButton7);
+            this.numberButton7.Click += NumberButton_Click;
+                        
             this.numberButton8 = new System.Windows.Forms.Button();
             this.numberButton8.Visible = true;
             this.numberButton8.Size = new System.Drawing.Size(50, 50);
             this.numberButton8.Location = new System.Drawing.Point(70, 170);
             this.numberButton8.Text = "8";
-
+            this.Controls.Add(numberButton8);
+            this.numberButton8.Click += NumberButton_Click;
+                        
             this.numberButton9 = new System.Windows.Forms.Button();
             this.numberButton9.Visible = true;
             this.numberButton9.Size = new System.Drawing.Size(50, 50);
             this.numberButton9.Location = new System.Drawing.Point(130, 170);
             this.numberButton9.Text = "9";
+            this.Controls.Add(numberButton9);
+            this.numberButton9.Click += NumberButton_Click;
 
             this.operatorButtonMultiply = new System.Windows.Forms.Button();
             this.operatorButtonMultiply.Visible = true;
@@ -184,6 +200,8 @@ namespace CalculatorApp
             this.numberButton0.Size = new System.Drawing.Size(50, 50);
             this.numberButton0.Location = new System.Drawing.Point(70, 230);
             this.numberButton0.Text = "0";
+            this.Controls.Add(numberButton0);
+            this.numberButton0.Click += NumberButton_Click;
 
             this.equalsButton = new System.Windows.Forms.Button();
             this.equalsButton.Visible = true;
@@ -205,40 +223,7 @@ namespace CalculatorApp
             this.resultTextBox.Text = "";  // Set the initial text
             this.Controls.Add(resultTextBox);
 
-
-
-            // Add controls to the form.
-
-            this.Controls.Add(numberButton1);
-            this.numberButton1.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton2);
-            this.numberButton2.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton3);
-            this.numberButton3.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton4);
-            this.numberButton4.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton5);
-            this.numberButton5.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton6);
-            this.numberButton6.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton7);
-            this.numberButton7.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton8);
-            this.numberButton8.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton9);
-            this.numberButton9.Click += NumberButton_Click;
-
-            this.Controls.Add(numberButton0);
-            this.numberButton0.Click += NumberButton_Click;
-
+            //needs to add the click function
             this.Controls.Add(operatorButtonAdd);
             this.Controls.Add(operatorButtonSubtract);
             this.Controls.Add(operatorButtonDivide);
