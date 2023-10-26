@@ -1,6 +1,11 @@
 using System;
 using System.Windows.Forms;
-
+//things to upgrade
+//make it able to handle 2 digit numbers
+//fix divide by zero
+//pendas
+//make the window fit the button
+//fix up the names get rid of "testnum bla"
 namespace CalculatorApp
 {
     public partial class CalculatorForm : Form
@@ -8,6 +13,10 @@ namespace CalculatorApp
         // Fields to keep track of user input and calculations
         private string currentInput = string.Empty;
         private double currentValue = 0.0;
+        private string num1=string.Empty;
+        private string num2=string.Empty;
+        private double  testnum1=0.0;
+        private double  testnum2=0.0;
         private string currentOperator = string.Empty;
         private bool isOperatorClicked = false;
 
@@ -33,16 +42,33 @@ namespace CalculatorApp
         private Button equalsButton;
         private Button clearButton;
 
+        public Button NumberButton5 { get => numberButton5; set => numberButton5 = value; }
+
         public CalculatorForm()
         {
             InitializeComponent();
         }
-        //adds the most recently clicked button to the screen
-        //consider makeing 2 var called num1 and num 2. then if else where if num1 == void then input = num 1 else num 2 = input 
+
+        // current main poblem, the test num cant get a double from the num 1 which should be getting a string number from the button
         private void NumberButton_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            resultTextBox.Text += button.Text;
+            
+            if (currentOperator == string.Empty){
+
+                Button button = (Button)sender;
+                num1=button.Text;
+                resultTextBox.Text += button.Text;
+                testnum1=Convert.ToDouble(num1);
+
+            }
+            else{
+                Button button = (Button)sender;
+                num2=button.Text;
+                resultTextBox.Text += button.Text;
+                testnum2=Convert.ToDouble(num2);
+
+            }
+            
         }
 
         //event handeler for operators
@@ -52,7 +78,7 @@ namespace CalculatorApp
             resultTextBox.Text += ((Button)sender).Text;
         }
 
-        // Event handler for the equals button click
+
         private void EqualsButton_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(resultTextBox.Text))
@@ -70,26 +96,27 @@ namespace CalculatorApp
             currentOperator = string.Empty;
         }
 
-        //needs to be overhauled
         private void Calculate()
         {
-            if (double.TryParse(currentInput, out double input) && double.TryParse(resultTextBox.Text, out double currentValue))
-            {
+
+
+
                 switch (currentOperator)
                 {
                     case "+":
-                        currentValue = input + currentValue;
+                        currentValue = testnum1 + testnum2;
+
                         break;
                     case "-":
-                        currentValue = input - currentValue;
+                        currentValue = testnum1 - testnum2;
                         break;
                     case "×":
-                        currentValue = input * currentValue;
+                        currentValue = testnum1 * testnum2;
                         break;
                     case "÷":
                         if (currentValue != 0)
                         {
-                            currentValue = input / currentValue;
+                            currentValue = testnum1 / testnum2;
                         }
                         else
                         {
@@ -100,7 +127,6 @@ namespace CalculatorApp
                 resultTextBox.Text = currentValue.ToString();
                 isOperatorClicked = true;
                 currentInput = currentValue.ToString();
-            }
         }
 
 
@@ -155,13 +181,13 @@ namespace CalculatorApp
             this.Controls.Add(numberButton4);
             this.numberButton4.Click += NumberButton_Click;
 
-            this.numberButton5 = new System.Windows.Forms.Button();
-            this.numberButton5.Visible = true;
-            this.numberButton5.Size = new System.Drawing.Size(50, 50);
-            this.numberButton5.Location = new System.Drawing.Point(70, 110);
-            this.numberButton5.Text = "5";
-            this.Controls.Add(numberButton5);
-            this.numberButton5.Click += NumberButton_Click;
+            this.NumberButton5 = new System.Windows.Forms.Button();
+            this.NumberButton5.Visible = true;
+            this.NumberButton5.Size = new System.Drawing.Size(50, 50);
+            this.NumberButton5.Location = new System.Drawing.Point(70, 110);
+            this.NumberButton5.Text = "5";
+            this.Controls.Add(NumberButton5);
+            this.NumberButton5.Click += NumberButton_Click;
 
             this.numberButton6 = new System.Windows.Forms.Button();
             this.numberButton6.Visible = true;
