@@ -53,13 +53,12 @@ namespace Sci_Calc
                     case "-":
                         currentValue = firstNumberValue - secondNumberValue;
                         break;
-                    case "Å~":
+                    case "*":
                         currentValue = firstNumberValue * secondNumberValue;
                         break;
-                    case "ÅÄ":
-                        currentValue = secondNumberValue == 0 ?
-                                       firstNumberValue / secondNumberValue :
-                                       double.NaN;
+                    case "/":
+                        currentValue = secondNumberValue == 0 ? double.NaN:
+                                       firstNumberValue / secondNumberValue;
                         break;
                 }
                 DisplayWindow.Text = currentValue.ToString();
