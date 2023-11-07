@@ -53,8 +53,12 @@ namespace Sci_Calc
                     case "-":
                         currentValue = firstNumberValue - secondNumberValue;
                         break;
+                    case "*":
                         currentValue = firstNumberValue * secondNumberValue;
                         break;
+                    case "/":
+                        currentValue = secondNumberValue == 0 ? double.NaN :
+                                       firstNumberValue / secondNumberValue;
                         break;
                 }
                 DisplayWindow.Text = currentValue.ToString();
