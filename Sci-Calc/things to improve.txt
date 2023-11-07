@@ -1,0 +1,5 @@
+a list of things to impove for the calculator
+1)lern hor tom use visual studio, its giveing me a hernia
+2) make it so the calculate funtion will calculate 2 digit pluss numbers
+3)allow for continuious calculations? ex 3+2+3
+4) add an order of operations

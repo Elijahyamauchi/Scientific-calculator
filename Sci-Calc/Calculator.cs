@@ -9,7 +9,6 @@ namespace Sci_Calc
         private double firstNumberValue = 0.0;
         private double secondNumberValue = 0.0;
         private string currentOperator = string.Empty;
-        private bool isOperatorClicked = false;
 
 
         public Calculator()
@@ -21,17 +20,14 @@ namespace Sci_Calc
         {
             Button inputButton = (Button)sender;
             DisplayWindow.Text += inputButton.Text;
-            double buttonNumberValue = Convert.ToDouble(inputButton.Text);
 
             if (currentOperator == string.Empty)
             {
-                firstNumberValueString = inputButton.Text;
-                firstNumberValue = buttonNumberValue;
+                firstNumberValueString = firstNumberValueString + inputButton.Text;
             }
             else
             {
-                secondNumberValueString = inputButton.Text;
-                secondNumberValue = buttonNumberValue;
+                secondNumberValueString = secondNumberValueString + inputButton.Text;
             }
         }
 
@@ -43,8 +39,11 @@ namespace Sci_Calc
 
         private void EqualsButton_Click(object sender, EventArgs e)
         {
-            if (!DisplayWindow.Text.Equals(string.Empty))
+            if (!string.IsNullOrWhiteSpace(DisplayWindow.Text))
             {
+                double firstNumberValue = Convert.ToDouble(firstNumberValueString);
+                double secondNumberValue = Convert.ToDouble(secondNumberValueString);
+
                 switch (currentOperator)
                 {
                     case "+":
@@ -62,7 +61,6 @@ namespace Sci_Calc
                         break;
                 }
                 DisplayWindow.Text = currentValue.ToString();
-                isOperatorClicked = true;
                 currentInput = currentValue.ToString();
                 currentOperator = string.Empty;
             }
