@@ -1,5 +1,10 @@
 namespace Sci_Calc
+
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+
     public partial class Calculator : Form
     {
         private string currentInput = string.Empty;
@@ -9,6 +14,7 @@ namespace Sci_Calc
         private double firstNumberValue = 0.0;
         private double secondNumberValue = 0.0;
         private string currentOperator = string.Empty;
+        private string equationString = string.Empty;
 
 
         public Calculator()
@@ -20,57 +26,44 @@ namespace Sci_Calc
         {
             Button inputButton = (Button)sender;
             DisplayWindow.Text += inputButton.Text;
-
-            if (currentOperator == string.Empty)
-            {
-                firstNumberValueString = firstNumberValueString + inputButton.Text;
-            }
-            else
-            {
-                secondNumberValueString = secondNumberValueString + inputButton.Text;
-            }
+            equationString += inputButton.Text;
         }
 
         private void OperatorButton_Click(object sender, EventArgs e)
         {
-            currentOperator = ((Button)sender).Text;
             DisplayWindow.Text += ((Button)sender).Text;
+            equationString += ((Button)sender).Text;
+        }
+
+
+        public static double Evaluate(string expression)
+        {
+            try
+            {
+                var table = new DataTable();
+                return Convert.ToDouble(table.Compute(expression, ""));
+            }
+            catch (Exception ex)
+            {
+                // Print details of the exception to help with debugging
+                Console.WriteLine($"Error evaluating expression: {ex.Message}");
+                Console.WriteLine($"Expression: {expression}");
+                return double.NaN; // or throw an exception, return a specific value, etc.
+            }
         }
 
         private void EqualsButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(DisplayWindow.Text))
-            {
-                double firstNumberValue = Convert.ToDouble(firstNumberValueString);
-                double secondNumberValue = Convert.ToDouble(secondNumberValueString);
-
-                switch (currentOperator)
-                {
-                    case "+":
-                        currentValue = firstNumberValue + secondNumberValue;
-                        break;
-                    case "-":
-                        currentValue = firstNumberValue - secondNumberValue;
-                        break;
-                    case "*":
-                        currentValue = firstNumberValue * secondNumberValue;
-                        break;
-                    case "/":
-                        currentValue = secondNumberValue == 0 ? double.NaN :
-                                       firstNumberValue / secondNumberValue;
-                        break;
-                }
-                DisplayWindow.Text = currentValue.ToString();
-                currentInput = currentValue.ToString();
-                currentOperator = string.Empty;
-            }
+            currentValue = Evaluate(equationString);
+            DisplayWindow.Text = currentValue.ToString();
+            currentOperator = string.Empty;
         }
-
         private void ClearButton_Click(object sender, EventArgs e)
         {
             DisplayWindow.Text = string.Empty;
             currentInput = string.Empty;
             currentOperator = string.Empty;
+            equationString=string.Empty;
         }
     }
 }
